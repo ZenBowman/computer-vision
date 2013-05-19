@@ -18,5 +18,19 @@ target_link_libraries( Blend ${OpenCV_LIBS} )
 project( Blur )
 find_package( OpenCV REQUIRED )
 add_executable( Blur src/Blur.cpp src/Blurrer.cpp )
-
 target_link_libraries( Blur ${OpenCV_LIBS} )
+
+project( Operator )
+find_package( OpenCV REQUIRED )
+add_executable( Operator src/Operator.cpp )
+target_link_libraries( Operator ${OpenCV_LIBS} )
+
+project( Interactive )
+find_package( OpenCV REQUIRED )
+add_executable( Interactive src/Interactive.cpp )
+include_directories(/home/zenbowman/dev/externaltools/sexpr_1.2.1/src)
+target_link_libraries(Interactive /home/zenbowman/dev/externaltools/sexpr_1.2.1/src/libsexp.a)
+target_link_libraries( Interactive ${OpenCV_LIBS} )
+
+
+
