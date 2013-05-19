@@ -10,24 +10,12 @@
 using namespace cv;
 
 const int erosion_type = MORPH_RECT;
-
-enum ResultType {
-  RESULT_MATRIX,
-  RESULT_STRING
-};
-
-struct EvalResult {
-  Mat resultMat;
-  std::string resultString;
-  ResultType resultType;
-};
-
 LoadImage loadImage;
 
-std::map<std::string, ExecutableCommand> commands;
+std::map<std::string, ExecutableCommand*> commands;
 
 void init() {
-  commands["load"] = loadImage;
+  commands["load"] = &loadImage;
 }
 
 EvalResult eval(sexp_t* command) {
@@ -66,7 +54,9 @@ EvalResult eval(sexp_t* command) {
 	std::cout << "MATRIX" << std::endl;
       }
     }
-    
+    if (commands.find(operation) != commands.end()) {
+      result.resultMat = commands[operation]->execute(arguments);
+    }
   }
   return result;
 }
@@ -76,13 +66,17 @@ int main( int argc, char** argv )
   init();
   char _command[256];
   sexp_t* command;
-  
+  EvalResult commandResult;
+  std::string foo;
+
   while(true) {
     std::cout << "Enter command:\t";
     std::cin.getline(_command, 256);
     std::cout << _command << std::endl;
     command = parse_sexp(_command, strlen(_command));
-    eval(command);
+    commandResult = eval(command);
+    imshow(_command, commandResult.resultMat);
+    waitKey(0);
     destroy_sexp(command);
   }
  
