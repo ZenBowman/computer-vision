@@ -11,11 +11,21 @@ using namespace cv;
 
 const int erosion_type = MORPH_RECT;
 LoadImage loadImage;
+ErodeImage erodeImage;
+SubtractImage subtractImage;
+AddImage addImage;
+DefImage defImage;
+GetImage getImage;
 
 std::map<std::string, ExecutableCommand*> commands;
 
 void init() {
   commands["load"] = &loadImage;
+  commands["erode"] = &erodeImage;
+  commands["subtract"] = &subtractImage;
+  commands["add"] = &addImage;
+  commands["def"] = &defImage;
+  commands["get"] = &getImage;
 }
 
 EvalResult eval(sexp_t* command) {
@@ -64,21 +74,31 @@ EvalResult eval(sexp_t* command) {
 int main( int argc, char** argv )
 {
   init();
+  cv::destroyWindow("win");
   char _command[256];
   sexp_t* command;
   EvalResult commandResult;
   std::string foo;
+  
+  namedWindow("Result", CV_WINDOW_AUTOSIZE);
 
   while(true) {
     std::cout << "Enter command:\t";
     std::cin.getline(_command, 256);
     std::cout << _command << std::endl;
-    command = parse_sexp(_command, strlen(_command));
-    commandResult = eval(command);
-    imshow(_command, commandResult.resultMat);
-    waitKey(0);
-    destroy_sexp(command);
+    if (strcmp("(exit)", _command) == 0) {
+      break;
+    }
+    else if (strcmp("(display)", _command) == 0) {
+      waitKey(0);
+    }
+    else {
+      command = parse_sexp(_command, strlen(_command));
+      commandResult = eval(command);
+      imshow("Result", commandResult.resultMat);
+      destroy_sexp(command);
+    }
   }
- 
+
   return 0;
 }

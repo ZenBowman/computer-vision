@@ -27,10 +27,22 @@ target_link_libraries( Operator ${OpenCV_LIBS} )
 
 project( Interactive )
 find_package( OpenCV REQUIRED )
-add_executable( Interactive src/Interactive.cpp )
+
+add_executable( Interactive 
+  src/Interactive.cpp
+  src/LoadImage.cpp
+  src/ErodeImage.cpp
+  src/SubtractImage.cpp
+  src/AddImage.cpp
+  src/DefGet.cpp
+)
+
 include_directories(/home/zenbowman/dev/externaltools/sexpr_1.2.1/src)
-target_link_libraries(Interactive /home/zenbowman/dev/externaltools/sexpr_1.2.1/src/libsexp.a)
-target_link_libraries( Interactive ${OpenCV_LIBS} )
+
+target_link_libraries(Interactive 
+  /home/zenbowman/dev/externaltools/sexpr_1.2.1/src/libsexp.a
+  ${OpenCV_LIBS} 
+)
 
 
 
