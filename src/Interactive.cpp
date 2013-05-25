@@ -16,6 +16,7 @@ SubtractImage subtractImage;
 AddImage addImage;
 DefImage defImage;
 GetImage getImage;
+EnhanceContrast enhanceContrast;
 
 std::map<std::string, ExecutableCommand*> commands;
 
@@ -26,6 +27,7 @@ void init() {
   commands["add"] = &addImage;
   commands["def"] = &defImage;
   commands["get"] = &getImage;
+  commands["enhance"] = &enhanceContrast;
 }
 
 EvalResult eval(sexp_t* command) {
@@ -85,8 +87,12 @@ int main( int argc, char** argv )
   while(true) {
     std::cout << "Enter command:\t";
     std::cin.getline(_command, 256);
-    std::cout << _command << std::endl;
-    if (strcmp("(exit)", _command) == 0) {
+    std::cout << "COMMAND = [" << _command << "]" << std::endl;
+    if (strcmp("", _command) == 0) {
+      std::cout << "Empty command";
+      std::cin.clear();
+    }
+    else if (strcmp("(exit)", _command) == 0) {
       break;
     }
     else if (strcmp("(display)", _command) == 0) {

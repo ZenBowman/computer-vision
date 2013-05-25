@@ -35,6 +35,7 @@ add_executable( Interactive
   src/SubtractImage.cpp
   src/AddImage.cpp
   src/DefGet.cpp
+  src/EnhanceContrast.cpp
 )
 
 include_directories(/home/zenbowman/dev/externaltools/sexpr_1.2.1/src)

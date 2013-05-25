@@ -24,4 +24,35 @@ class LoadImage: public ExecutableCommand {
   cv::Mat execute(std::vector<EvalResult> arguments);
 };
 
+class ErodeImage: public ExecutableCommand {
+public:
+  cv::Mat execute(std::vector<EvalResult> arguments);
+};
+
+class SubtractImage: public ExecutableCommand {
+ public:
+  cv::Mat execute(std::vector<EvalResult> arguments);
+};
+
+class AddImage: public ExecutableCommand {
+ public:
+  cv::Mat execute(std::vector<EvalResult> arguments);
+};
+
+class DefImage: public ExecutableCommand {
+ public:
+  cv::Mat execute(std::vector<EvalResult> arguments);
+};
+
+class GetImage: public ExecutableCommand {
+ public:
+  cv::Mat execute(std::vector<EvalResult> arguments);
+};
+
+class EnhanceContrast: public ExecutableCommand {
+ public:
+  cv::Mat execute(std::vector<EvalResult> arguments);
+};
+
+
 #endif
