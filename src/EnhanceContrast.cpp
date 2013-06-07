@@ -2,7 +2,7 @@
 using namespace cv;
 
 Mat EnhanceContrast::execute(std::vector<EvalResult> arguments) {
-  Mat image = arguments[0].resultMat;
+  Mat image = arguments[0].resultMat.clone();
   int boost = atoi(arguments[1].resultString.c_str());
   
   Mat_<Vec3b> imageData = image;

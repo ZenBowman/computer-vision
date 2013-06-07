@@ -1,21 +1,14 @@
 #include <iostream>
 #include <stdio.h>
 #include <opencv2/opencv.hpp>
-#include "Blurrer.h"
+#include "ExecutableCommand.h"
 
 using namespace cv;
 
-
-int main( int argc, char** argv )
-{
-  Mat image1;
-
-  image1 = imread( argv[1], 1 );
-
-  imshow("Original", image1);
-  waitKey(0);
-
-  Blurrer::showWithGaussianBlur(image1);
- 
-  return 0;
+Mat Blur::execute(std::vector<EvalResult> arguments) {
+  Mat blurred_image;
+  Mat original_image = arguments[0].resultMat;
+  int blur_size = atoi(arguments[1].resultString.c_str());
+  GaussianBlur(original_image, blurred_image, cv::Size(blur_size, blur_size), 0, 0);
+  return blurred_image;
 }

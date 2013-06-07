@@ -12,11 +12,15 @@ using namespace cv;
 const int erosion_type = MORPH_RECT;
 LoadImage loadImage;
 ErodeImage erodeImage;
+DilateImage dilateImage;
 SubtractImage subtractImage;
 AddImage addImage;
 DefImage defImage;
 GetImage getImage;
 EnhanceContrast enhanceContrast;
+Sharpen sharpen;
+Blur blurOp;
+Filter3 filter3;
 
 std::map<std::string, ExecutableCommand*> commands;
 
@@ -25,9 +29,13 @@ void init() {
   commands["erode"] = &erodeImage;
   commands["subtract"] = &subtractImage;
   commands["add"] = &addImage;
-  commands["def"] = &defImage;
+  commands["set"] = &defImage;
   commands["get"] = &getImage;
   commands["enhance"] = &enhanceContrast;
+  commands["sharpen"] = &sharpen;
+  commands["blur"] = &blurOp;
+  commands["filter"] = &filter3;
+  commands["dilate"] = &dilateImage;
 }
 
 EvalResult eval(sexp_t* command) {
@@ -89,8 +97,7 @@ int main( int argc, char** argv )
     std::cin.getline(_command, 256);
     std::cout << "COMMAND = [" << _command << "]" << std::endl;
     if (strcmp("", _command) == 0) {
-      std::cout << "Empty command";
-      std::cin.clear();
+      return 1;
     }
     else if (strcmp("(exit)", _command) == 0) {
       break;
@@ -106,5 +113,5 @@ int main( int argc, char** argv )
     }
   }
 
-  return 0;
+  return 1;
 }
