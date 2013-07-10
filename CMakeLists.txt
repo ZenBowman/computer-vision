@@ -15,6 +15,9 @@ add_executable( Interactive
   src/Sharpen.cpp
   src/Blur.cpp
   src/Filter3.cpp
+  src/ToGrayScale.cpp
+  src/Derivative.cpp
+  src/Canny.cpp
 )
 
 include_directories(/home/zenbowman/dev/externaltools/sexpr_1.2.1/src)
@@ -24,5 +27,9 @@ target_link_libraries(Interactive
   ${OpenCV_LIBS} 
 )
 
+project(FaceDetect)
+find_package(OpenCV REQUIRED)
+add_executable(FaceDetect src/FaceDetection.cpp)
+target_link_libraries(FaceDetect ${OpenCV_LIBS})
 
 

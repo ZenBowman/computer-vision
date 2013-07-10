@@ -21,6 +21,11 @@ EnhanceContrast enhanceContrast;
 Sharpen sharpen;
 Blur blurOp;
 Filter3 filter3;
+ToGrayScale toGrayScale;
+SobelOperator sobel(SOBEL);
+SobelOperator scharr(SCHARR);
+LaplaceOperator laplace;
+CannyOperator canny;
 
 std::map<std::string, ExecutableCommand*> commands;
 
@@ -36,6 +41,11 @@ void init() {
   commands["blur"] = &blurOp;
   commands["filter"] = &filter3;
   commands["dilate"] = &dilateImage;
+  commands["make-gray"] = &toGrayScale;
+  commands["sobel"] = &sobel;
+  commands["scharr"] = &scharr;
+  commands["laplace"] = &laplace;
+  commands["canny"] = &canny;
 }
 
 EvalResult eval(sexp_t* command) {

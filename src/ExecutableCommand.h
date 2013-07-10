@@ -29,6 +29,12 @@ public:
   cv::Mat execute(std::vector<EvalResult> arguments);
 };
 
+class DilateImage: public ExecutableCommand {
+public:
+  cv::Mat execute(std::vector<EvalResult> arguments);
+};
+
+
 class SubtractImage: public ExecutableCommand {
  public:
   cv::Mat execute(std::vector<EvalResult> arguments);
@@ -54,5 +60,49 @@ class EnhanceContrast: public ExecutableCommand {
   cv::Mat execute(std::vector<EvalResult> arguments);
 };
 
+class Sharpen: public ExecutableCommand {
+ public:
+  cv::Mat execute(std::vector<EvalResult> arguments);
+};
+
+
+class Blur: public ExecutableCommand {
+ public:
+  cv::Mat execute(std::vector<EvalResult> arguments);
+};
+
+class Filter3: public ExecutableCommand {
+ public:
+  cv::Mat execute(std::vector<EvalResult> arguments);
+};
+
+class ToGrayScale: public ExecutableCommand {
+ public:
+  cv::Mat execute(std::vector<EvalResult> arguments);
+};
+
+enum SobelType {
+  SOBEL,
+  SCHARR
+};
+
+class SobelOperator: public ExecutableCommand {
+ public:
+  SobelOperator(SobelType type);
+  cv::Mat execute(std::vector<EvalResult> arguments);
+ private:
+  SobelType type;
+};
+
+class LaplaceOperator: public ExecutableCommand {
+ public:
+  cv::Mat execute(std::vector<EvalResult> arguments);
+};
+
+
+class CannyOperator: public ExecutableCommand {
+ public:
+  cv::Mat execute(std::vector<EvalResult> arguments);
+};
 
 #endif
