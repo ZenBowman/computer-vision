@@ -76,6 +76,12 @@ class Filter3: public ExecutableCommand {
   cv::Mat execute(std::vector<EvalResult> arguments);
 };
 
+
+class ToColor: public ExecutableCommand {
+ public:
+  cv::Mat execute(std::vector<EvalResult> arguments);
+};
+
 class ToGrayScale: public ExecutableCommand {
  public:
   cv::Mat execute(std::vector<EvalResult> arguments);
@@ -102,6 +108,11 @@ class LaplaceOperator: public ExecutableCommand {
 
 class CannyOperator: public ExecutableCommand {
  public:
+  cv::Mat execute(std::vector<EvalResult> arguments);
+};
+
+class ScalarMultiply: public ExecutableCommand {
+public:
   cv::Mat execute(std::vector<EvalResult> arguments);
 };
 

@@ -13,8 +13,8 @@ Mat CannyOperator::execute(std::vector<EvalResult> arguments) {
   Mat src = arguments[0].resultMat;
   int low_threshold = atoi(arguments[1].resultString.c_str());
 
-  std::cout << "Applying canny with low threshold =" << low_threshold
-	    << std::endl;
+  //  std::cout << "Applying canny with low threshold =" << low_threshold
+  //	    << std::endl;
   cvtColor(src, src_gray, CV_BGR2GRAY);
   blur( src_gray, detected_edges, Size(3,3) );
 

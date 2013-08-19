@@ -18,6 +18,7 @@ add_executable( Interactive
   src/ToGrayScale.cpp
   src/Derivative.cpp
   src/Canny.cpp
+  src/Multiply.cpp
 )
 
 include_directories(/home/zenbowman/dev/externaltools/sexpr_1.2.1/src)
@@ -32,4 +33,31 @@ find_package(OpenCV REQUIRED)
 add_executable(FaceDetect src/FaceDetection.cpp)
 target_link_libraries(FaceDetect ${OpenCV_LIBS})
 
+project( InteractiveVideo )
+find_package( OpenCV REQUIRED )
+
+add_executable( InteractiveVideo 
+  src/InteractiveVideo.cpp
+  src/LoadImage.cpp
+  src/ErodeImage.cpp
+  src/DilateImage.cpp
+  src/SubtractImage.cpp
+  src/AddImage.cpp
+  src/DefGet.cpp
+  src/EnhanceContrast.cpp
+  src/Sharpen.cpp
+  src/Blur.cpp
+  src/Filter3.cpp
+  src/ToGrayScale.cpp
+  src/Derivative.cpp
+  src/Canny.cpp
+  src/Multiply.cpp
+)
+
+include_directories(/home/zenbowman/dev/externaltools/sexpr_1.2.1/src)
+
+target_link_libraries(InteractiveVideo 
+  /home/zenbowman/dev/externaltools/sexpr_1.2.1/src/libsexp.a
+  ${OpenCV_LIBS} 
+)
 
