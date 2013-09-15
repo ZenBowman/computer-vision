@@ -33,6 +33,11 @@ find_package(OpenCV REQUIRED)
 add_executable(FaceDetect src/FaceDetection.cpp)
 target_link_libraries(FaceDetect ${OpenCV_LIBS})
 
+project(Chapter3)
+find_package(OpenCV REQUIRED)
+add_executable(Chapter3 src/Chapter3Exercises.cpp)
+target_link_libraries(Chapter3 ${OpenCV_LIBS})
+
 project( InteractiveVideo )
 find_package( OpenCV REQUIRED )
 
@@ -61,3 +66,12 @@ target_link_libraries(InteractiveVideo
   ${OpenCV_LIBS} 
 )
 
+project(holecount)
+find_package(OpenCV REQUIRED)
+add_executable(holecount src/HoleCounting.cpp)
+target_link_libraries(holecount ${OpenCV_LIBS})
+
+project(jpegstudy)
+find_package(OpenCV REQUIRED)
+add_executable(jpegstudy src/JpegStudy.cpp)
+target_link_libraries(jpegstudy ${OpenCV_LIBS})
